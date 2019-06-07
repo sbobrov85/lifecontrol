@@ -1,0 +1,8 @@
+.classpath
+.gradle
+.project
+.settings
+.theia
+bin
+build*
+!build.gradle
