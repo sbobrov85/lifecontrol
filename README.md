@@ -1,5 +1,7 @@
 # lifecontrol - JavaFX application
 
+![Released](https://img.shields.io/badge/status-development-yellow.svg)
+
 Build with standard javafxports instructions:
 
 * gradle run - build and run desktop application
