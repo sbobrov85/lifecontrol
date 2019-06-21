@@ -15,6 +15,9 @@ mainClassName = 'ru.sbobrov85.lifecontrol.desktop.Main'
 repositories {
     jcenter()
     mavenCentral()
+    maven {
+        url 'https://maven.google.com'
+    }
 }
 
 // todo: platform dependencies
