@@ -1,5 +1,8 @@
 FROM gitpod/workspace-full
 
+USER root
+
+RUN apt-get update && apt-get install -y lib32stdc++6 lib32z1
 
 ENV ANDROID_HOME=/home/gitpod/androidsdk \
 # Get the latest version from https://developer.android.com/studio/index.html
