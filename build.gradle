@@ -37,5 +37,6 @@ jfxmobile {
         applicationPackage = 'ru.sbobrov85.lifecontrol.android.Main'
         androidSdk = System.getProperty("user.home") + File.separator + 'androidsdk'
         compileSdkVersion = 23
+        manifest = 'src/android/AndroidManifest.xml'
     }
 }
