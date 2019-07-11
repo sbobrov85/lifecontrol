@@ -23,6 +23,7 @@ repositories {
 // todo: platform dependencies
 dependencies {
     compile 'com.j256.ormlite:ormlite-core:5.1'
+    compile 'org.apache.commons:commons-lang3:3.9'
 
     desktopCompile 'com.j256.ormlite:ormlite-jdbc:5.1'
     desktopCompile 'org.xerial:sqlite-jdbc:3.27.2.1'

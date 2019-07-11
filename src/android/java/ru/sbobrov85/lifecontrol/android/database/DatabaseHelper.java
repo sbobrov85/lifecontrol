@@ -20,14 +20,17 @@ public class DatabaseHelper
 
     private static final int DATABASE_VERSION = 1;
 
-    public DatabaseHelper(Context context, String name, CursorFactory factory, int version) {
-        super(context, name, factory, version);
-    }
-
-    public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
+    public DatabaseHelper(Context context) {
+        super(context, "lifecontrol.db", null, DATABASE_VERSION);
         HelperInit.initDatabase(getConnectionSource());
     }
 
+    @Override
+    public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

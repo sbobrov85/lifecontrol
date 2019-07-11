@@ -8,6 +8,8 @@ import com.j256.ormlite.table.TableUtils;
 import ru.sbobrov85.lifecontrol.Main;
 import ru.sbobrov85.lifecontrol.utils.Tools;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Database init actions.
  */
@@ -15,7 +17,7 @@ public class HelperInit {
     /**
      * Contain chunks for tables path.
      */
-    private static String[] tablesLocationChunks = {
+    public static String[] tablesLocationChunks = {
         "ru",
         "sbobrov85",
         "lifecontrol",
@@ -62,7 +64,7 @@ public class HelperInit {
      * @return path to tables classes directory.
      */
     protected static String getTablesLocation() {
-        return String.join(File.separator, tablesLocationChunks) +  File.separator;
+        return StringUtils.join(File.separator, tablesLocationChunks) +  File.separator;
     }
 
     /**
@@ -71,6 +73,6 @@ public class HelperInit {
      * @return package name
      */
     protected static String getTablesPackageName() {
-        return String.join(".", tablesLocationChunks);
+        return StringUtils.join(".", tablesLocationChunks);
     }
 }
