@@ -1,34 +1,21 @@
 package ru.sbobrov85.lifecontrol.android.database;
 
-import android.content.Context;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
+
+import android.content.Context;
+
 import javafxports.android.FXActivity;
+import ru.sbobrov85.lifecontrol.database.DatabaseHelperFactoryAbstract;
 
-import ru.sbobrov85.lifecontrol.database.DatabaseHelperFactoryInterface;
-import ru.sbobrov85.lifecontrol.database.DatabaseHelperInterface;
-
-public class DatabaseHelperFactory implements DatabaseHelperFactoryInterface {
-    protected static DatabaseHelper databaseHelper = null;
-
-    @Override
-    public DatabaseHelperInterface getHelper() {
-        return databaseHelper;
-    }
-
-    @Override
-    public DatabaseHelperInterface setHelper() {
-        return setOpenHelper((Context) FXActivity.getInstance());
-    }
-
-    public DatabaseHelperInterface setOpenHelper(Context context) {
-        return databaseHelper = OpenHelperManager.getHelper(
-            context,
+public class DatabaseHelperFactory extends DatabaseHelperFactoryAbstract {
+    public static void setHelper() {
+        databaseHelper = OpenHelperManager.getHelper(
+            (Context) FXActivity.getInstance(),
             DatabaseHelper.class
         );
     }
 
-    @Override
-    public void releaseHelper() {
+    public static void releaseHelper() {
         OpenHelperManager.releaseHelper();
         databaseHelper = null;
     }
