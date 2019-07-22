@@ -7,6 +7,7 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.util.Enumeration;
 import java.util.HashSet;
+import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -69,5 +70,29 @@ public class Tools
         }
 
         throw new UnsupportedOperationException("Cannot list files for URL "+dirURL);
+    }
+
+    /**
+     * Translate string.
+     * @param string string for translate.
+     * @param resources language resources.
+     * @return translated or original string.
+     */
+    public static String translateString(
+        final String string,
+        final ResourceBundle resources
+    ) {
+        String result;
+
+        String resourceKey = string.contains("%") ?
+            string.replaceAll("%", "") : string;
+
+        try {
+            result = resources.getString(resourceKey);
+        } catch (Exception $e) {
+            result = resourceKey;
+        }
+
+        return result;
     }
 }
