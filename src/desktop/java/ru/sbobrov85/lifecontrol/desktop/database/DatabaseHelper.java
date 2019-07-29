@@ -35,7 +35,7 @@ public class DatabaseHelper
         implements DatabaseHelperInterface {
 
     @Override
-    public ConnectionSource getDatabaseConnection() {
+    public ConnectionSource getConnectionSource() {
        if (!(databaseConnection instanceof ConnectionSource)) {
             try {
                 databaseConnection = new JdbcConnectionSource(
@@ -52,7 +52,7 @@ public class DatabaseHelper
 
     public DatabaseHelper() {
         if (!exists()) {
-			HelperInit.initDatabase(getDatabaseConnection());
+			HelperInit.initDatabase(getConnectionSource());
         }
     }
 

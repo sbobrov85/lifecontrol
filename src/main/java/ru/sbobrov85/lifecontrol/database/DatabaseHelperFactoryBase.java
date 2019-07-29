@@ -16,7 +16,7 @@
  */
 package ru.sbobrov85.lifecontrol.database;
 
-abstract public class DatabaseHelperFactoryAbstract
+public class DatabaseHelperFactoryBase
 {
     protected static DatabaseHelperInterface databaseHelper = null;
 
@@ -30,6 +30,7 @@ abstract public class DatabaseHelperFactoryAbstract
 
     /**
      * Get helper instance.
+     * @return database helper instance.
      */
     public static DatabaseHelperInterface getHelper() {
         return databaseHelper;

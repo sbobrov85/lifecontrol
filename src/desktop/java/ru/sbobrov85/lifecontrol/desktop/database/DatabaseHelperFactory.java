@@ -16,9 +16,9 @@
  */
 package ru.sbobrov85.lifecontrol.desktop.database;
 
-import ru.sbobrov85.lifecontrol.database.DatabaseHelperFactoryAbstract;
+import ru.sbobrov85.lifecontrol.database.DatabaseHelperFactoryBase;
 
-public class DatabaseHelperFactory extends DatabaseHelperFactoryAbstract {
+public class DatabaseHelperFactory extends DatabaseHelperFactoryBase {
     public static void setHelper() {
         if (databaseHelper == null) {
             databaseHelper = new DatabaseHelper();

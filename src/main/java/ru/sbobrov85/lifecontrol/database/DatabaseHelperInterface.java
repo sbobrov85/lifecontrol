@@ -16,9 +16,11 @@
  */
 package ru.sbobrov85.lifecontrol.database;
 
+import com.j256.ormlite.support.ConnectionSource;
+
 /**
  * Database helper interface.
  */
 public interface DatabaseHelperInterface {
-
+    public ConnectionSource getConnectionSource();
 }

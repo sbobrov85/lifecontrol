@@ -48,8 +48,8 @@ public abstract class HelperBase implements DatabaseHelperInterface {
      *
      * @return {ConnectionSource}
      */
-    public ConnectionSource getDatabaseConnection() throws Exception {
-        throw new Exception("Not implemented!");
+    public ConnectionSource getConnectionSource() {
+        return null;
     }
 
     /**

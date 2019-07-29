@@ -21,9 +21,9 @@ import com.j256.ormlite.android.apptools.OpenHelperManager;
 import android.content.Context;
 
 import javafxports.android.FXActivity;
-import ru.sbobrov85.lifecontrol.database.DatabaseHelperFactoryAbstract;
+import ru.sbobrov85.lifecontrol.database.DatabaseHelperFactoryBase;
 
-public class DatabaseHelperFactory extends DatabaseHelperFactoryAbstract {
+public class DatabaseHelperFactory extends DatabaseHelperFactoryBase {
     public static void setHelper() {
         databaseHelper = OpenHelperManager.getHelper(
             (Context) FXActivity.getInstance(),
