@@ -16,15 +16,20 @@
  */
 package ru.sbobrov85.lifecontrol.database;
 
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
 import java.io.File;
 
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+import java.sql.SQLException;
 
 import ru.sbobrov85.lifecontrol.Main;
 import ru.sbobrov85.lifecontrol.utils.Tools;
 
 import org.apache.commons.lang3.StringUtils;
+import ru.sbobrov85.lifecontrol.database.table.Category;
+import ru.sbobrov85.lifecontrol.utils.GUI;
 
 /**
  * Database init actions.
@@ -43,6 +48,8 @@ public class HelperInit {
 
     /**
      * Init database, create tables.
+     *
+     * @param connection current database connection.
      *
      * @return Boolean true on success, false otherwise.
      */
@@ -66,6 +73,7 @@ public class HelperInit {
                     System.out.println(e);
                 }
             }
+            populateData(connection);
         } catch (Exception e) {
             System.out.println(e);
             result = false;
@@ -80,7 +88,8 @@ public class HelperInit {
      * @return path to tables classes directory.
      */
     protected static String getTablesLocation() {
-        return StringUtils.join(File.separator, tablesLocationChunks) +  File.separator;
+        return StringUtils.join(tablesLocationChunks, File.separator)
+          +  File.separator;
     }
 
     /**
@@ -89,6 +98,34 @@ public class HelperInit {
      * @return package name
      */
     protected static String getTablesPackageName() {
-        return StringUtils.join(".", tablesLocationChunks);
+        return StringUtils.join(tablesLocationChunks, ".");
+    }
+
+    /**
+     * Populate database with common data.
+     *
+     * @param connection current database connection.
+     *
+     * @throws java.sql.SQLException error on create protected categories.
+     */
+    public static void populateData(
+      ConnectionSource connection
+    ) throws SQLException {
+      Dao<Category, ?> dao = DaoManager.createDao(
+        connection,
+        Category.class
+      );
+
+      dao.create(new Category(
+        GUI.translateStringFromCommonBundle("%Income"),
+        Category.CATEGORY_TYPE_INCOME,
+        true
+      ));
+
+      dao.create(new Category(
+        GUI.translateStringFromCommonBundle("%Expence"),
+        Category.CATEGORY_TYPE_EXPENSE,
+        true
+      ));
     }
 }

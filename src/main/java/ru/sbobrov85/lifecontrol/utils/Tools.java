@@ -105,7 +105,7 @@ public class Tools
 
         try {
             result = resources.getString(resourceKey);
-        } catch (Exception $e) {
+        } catch (Exception e) {
             result = resourceKey;
         }
 

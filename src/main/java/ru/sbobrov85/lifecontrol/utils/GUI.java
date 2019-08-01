@@ -85,4 +85,18 @@ public final class GUI {
         Scene scene = new Scene(root);
         return scene;
     }
+
+    /**
+     * Translate string from common language bundle.
+     *
+     * @param string string with % lead.
+     *
+     * @return translated string.
+     */
+    public static String translateStringFromCommonBundle(String string) {
+      return Tools.translateString(
+        string,
+        ResourceBundle.getBundle(LANGUAGE_FOLDER + ".Common")
+      );
+    }
 }

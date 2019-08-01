@@ -75,6 +75,23 @@ public final class Category {
     )
     private Boolean isProtected;
 
+    public Category() {
+      super();
+    }
+
+    /**
+     * Class constructor.
+     *
+     * @param label category label.
+     * @param categoryType category type (see Category.CATEGORY_TYPE_*).
+     * @param isProtected true - is protected category, another - false.
+     */
+    public Category(String label, int categoryType, Boolean isProtected) {
+      this.label = label;
+      this.categoryType = categoryType;
+      this.isProtected = isProtected;
+    }
+
     /**
      * @return the categoryId
      */
@@ -162,4 +179,9 @@ public final class Category {
     public void setIsProtected(final Boolean newIsProtected) {
         this.isProtected = newIsProtected;
     }
+
+  @Override
+  public String toString() {
+    return getLabel();
+  }
 }
