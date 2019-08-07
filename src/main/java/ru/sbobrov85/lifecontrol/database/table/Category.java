@@ -37,7 +37,11 @@ public final class Category {
     /**
      * Primary key.
      */
-    @DatabaseField(columnName = "category_id", index = true)
+    @DatabaseField(
+            columnName = "category_id",
+            index = true,
+            generatedId = true
+    )
     private int categoryId;
 
     /**
