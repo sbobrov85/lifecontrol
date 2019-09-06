@@ -105,23 +105,27 @@ public class MainTabsController implements Initializable {
         setAccountsTabData();
     }
 
+    protected final void setTabView(Tab tab, final String viewName) {
+      try {
+        Parent root = GUI.getLayout(viewName);
+        tab.setContent(root);
+      } catch (IOException ex) {
+        Logger.getLogger(MainTabsController.class.getName())
+            .log(Level.SEVERE, null, ex);
+      }
+    }
+
     /**
      * Create user interface for accounts tab.
      */
     protected final void setAccountsTabData() {
-      // todo: set accordion...
+      setTabView(accountsTab, "AccountsTab");
     }
 
     /**
      * Create user interface for settings tab.
      */
     protected final void setSettingsTabData() {
-        try {
-            Parent root = GUI.getLayout("SettingsTab");
-            settingsTab.setContent(root);
-        } catch (IOException ex) {
-            Logger.getLogger(MainTabsController.class.getName())
-                .log(Level.SEVERE, null, ex);
-        }
+      setTabView(settingsTab, "SettingsTab");
     }
 }

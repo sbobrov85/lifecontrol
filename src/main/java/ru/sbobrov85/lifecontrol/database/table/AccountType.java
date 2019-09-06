@@ -26,6 +26,7 @@ import com.j256.ormlite.table.DatabaseTable;
 public class AccountType {
     /**
      * Primary key.
+     * @todo: rename to account_type_id
      */
     @DatabaseField(columnName = "account_type", generatedId = true)
     private int accountType;
