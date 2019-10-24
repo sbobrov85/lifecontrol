@@ -26,7 +26,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import ru.sbobrov85.lifecontrol.database.table.Account;
 import ru.sbobrov85.lifecontrol.database.table.AccountGroup;
 import ru.sbobrov85.lifecontrol.services.Accounts;
 
@@ -52,14 +51,14 @@ public class AccountsTabController implements Initializable {
   protected void setAccountGroups() {
     List<AccountGroup> accountGroups = null;
     try {
-      accountGroups = Accounts.getAccountGroupDao().queryForAll();
+      accountGroups = Accounts.getAccountGroupAll();
     } catch (SQLException ex) {
       Logger.getLogger(AccountsTabController.class.getName()).log(Level.SEVERE, null, ex);
     }
     if (accountGroups != null) {
       for (AccountGroup accountGroup: accountGroups) {
         Tab tab = new Tab(accountGroup.getLabel());
-
+        
         accountGroupTabs.getTabs().add(tab);
       }
     }

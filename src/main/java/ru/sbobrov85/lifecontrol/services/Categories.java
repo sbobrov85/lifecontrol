@@ -17,39 +17,27 @@
 package ru.sbobrov85.lifecontrol.services;
 
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.stmt.QueryBuilder;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.TreeItem;
+import ru.sbobrov85.lifecontrol.classes.BaseService;
 import ru.sbobrov85.lifecontrol.classes.CategoryTreeItem;
-import ru.sbobrov85.lifecontrol.database.DatabaseHelperFactoryBase;
 import ru.sbobrov85.lifecontrol.database.table.Category;
 import ru.sbobrov85.lifecontrol.utils.GUI;
 
 /**
  * Manage categories.
  */
-public class Categories {
+public class Categories extends BaseService {
   /**
-   * Get dao.
+   * Get category dao.
    * @return null or categories dao.
    */
   public static Dao<Category, ?> getDao() {
-    Dao<Category, ?> dao = null;
-
-    try {
-      dao = DaoManager.createDao(
-          (DatabaseHelperFactoryBase.getHelper()).getConnectionSource(),
-          Category.class
-      );
-    } catch (SQLException ex) {
-      Logger.getLogger(Categories.class.getName())
-          .log(Level.SEVERE, null, ex);
-    }
-
+    Dao<Category, ?> dao = getDao(Category.class);
     return dao;
   }
 

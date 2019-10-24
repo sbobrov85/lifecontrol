@@ -17,58 +17,37 @@
 package ru.sbobrov85.lifecontrol.services;
 
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.stmt.QueryBuilder;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import ru.sbobrov85.lifecontrol.database.DatabaseHelperFactoryBase;
+import ru.sbobrov85.lifecontrol.classes.BaseService;
 import ru.sbobrov85.lifecontrol.database.table.Account;
 import ru.sbobrov85.lifecontrol.database.table.AccountGroup;
 
 /**
  * Manage accounts.
  */
-public class Accounts {
+public class Accounts extends BaseService {
   /**
-   * Get dao.
-   * @return null or accounts group dao.
+   * Get account groups list without filtering.
+   * @return account groups list.
+   * @throws SQLException on query errors.
    */
-  public static Dao<AccountGroup, ?> getAccountGroupDao() {
-    Dao<AccountGroup, ?> dao = null;
-
-    try {
-      dao = DaoManager.createDao(
-          (DatabaseHelperFactoryBase.getHelper()).getConnectionSource(),
-          AccountGroup.class
-      );
-    } catch (SQLException ex) {
-      Logger.getLogger(Accounts.class.getName())
-          .log(Level.SEVERE, null, ex);
-    }
-
-    return dao;
-  }
-  
-  public static Dao<Account, ?> getAccountDao() {
-    Dao<Account, ?> dao = null;
-    
-    try {
-      dao = DaoManager.createDao(
-              (DatabaseHelperFactoryBase.getHelper()).getConnectionSource(),
-              Account.class
-      );
-    } catch (SQLException ex) {
-      Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    
-    return dao;
+  public static List<AccountGroup> getAccountGroupAll() throws SQLException {
+    Dao<AccountGroup, ?> dao = getDao(AccountGroup.class);
+    return dao.queryForAll();
   }
 
+  /**
+   * Get accounts for account group.
+   * @param accountGroupId account group id.
+   * @return list of accounts.
+   */
   public static List<Account> getAccountGroupAccount(Integer accountGroupId) {
     List<Account> accounts = null;
-    Dao<Account, ?> dao = getAccountDao();
+    Dao<Account, ?> dao = getDao(Account.class);
 
     if (dao != null) {
       QueryBuilder queryBuilder = dao.queryBuilder();
